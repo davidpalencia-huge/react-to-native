@@ -25,12 +25,12 @@ export function FavoritesProvider({ children }) {
   const [favorites, setFavorites] = useState([]); // array of dev IDs
 
   const toggleFavorite = (id) => {
-    // TODO
+    setFavorites(prev =>
+      prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id]
+    );
   };
 
-  const isFavorite = (id) => {
-    // TODO
-  };
+  const isFavorite = (id) => favorites.includes(id);
 
   return (
     <FavoritesContext.Provider value={{ favorites, toggleFavorite, isFavorite }}>

@@ -12,13 +12,16 @@ const API_URL = 'https://jsonplaceholder.typicode.com/users';
 // ─────────────────────────────────────────────
 
 export function DevList() {
-  // TODO: replace this line with useFetch
-  const { data: devs, loading, error } = { data: null, loading: true, error: null };
+  const { data: devs, loading, error, retry } = useFetch(API_URL);
 
   if (loading) return <p style={styles.state}>Loading devs...</p>;
 
-  // STRETCH: pass retry to this error state once you've implemented it
-  if (error) return <p style={styles.state}>Error: {error.message}</p>;
+  if (error) return (
+    <p style={styles.state}>
+      Error: {error.message}{' '}
+      <button onClick={retry} style={styles.retry}>Retry</button>
+    </p>
+  );
 
   return (
     <div>
@@ -31,4 +34,5 @@ export function DevList() {
 
 const styles = {
   state: { textAlign: 'center', color: '#6b7280', padding: '48px 0', fontSize: '14px' },
+  retry: { marginLeft: '8px', cursor: 'pointer' },
 };
