@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from 'react';
 // ─────────────────────────────────────────────
 // This context tracks which developer IDs the user has starred.
 //
-// The Provider already wraps the app in App.jsx.
+// The Provider already wraps the app in App.js.
 // DevCard already calls useFavorites() — you just need to make it work.
 //
 // Steps:

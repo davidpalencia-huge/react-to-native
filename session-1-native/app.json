@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "Dev Directory",
+    "slug": "dev-directory-session-1",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "sdkVersion": "51.0.0",
+    "platforms": ["ios", "android", "web"]
+  }
+}

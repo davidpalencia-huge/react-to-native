@@ -1,3 +1,4 @@
+import { ScrollView, Text, ActivityIndicator } from 'react-native';
 import { useFetch } from '../hooks/useFetch';
 import { DevCard } from './DevCard';
 
@@ -15,20 +16,24 @@ export function DevList() {
   // TODO: replace this line with useFetch
   const { data: devs, loading, error } = { data: null, loading: true, error: null };
 
-  if (loading) return <p style={styles.state}>Loading devs...</p>;
+  if (loading) return <ActivityIndicator style={{ marginTop: 48 }} />;
 
   // STRETCH: pass retry to this error state once you've implemented it
-  if (error) return <p style={styles.state}>Error: {error.message}</p>;
+  if (error) return (
+    <Text style={styles.state}>
+      Error: {error.message}
+    </Text>
+  );
 
   return (
-    <div>
+    <ScrollView>
       {devs?.map((dev) => (
         <DevCard key={dev.id} dev={dev} />
       ))}
-    </div>
+    </ScrollView>
   );
 }
 
 const styles = {
-  state: { textAlign: 'center', color: '#6b7280', padding: '48px 0', fontSize: '14px' },
+  state: { textAlign: 'center', color: '#6b7280', padding: 48, fontSize: 14 },
 };

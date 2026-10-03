@@ -39,5 +39,5 @@ export function useFetch(url) {
 // Hint: you'll need one extra piece of state to make the effect re-run.
 //
 // When done, DevList will pass retry to the error state so users
-// can recover without refreshing the page.
+// can recover without reloading.
 // ─────────────────────────────────────────────
