@@ -8,15 +8,12 @@ always build on something familiar.
 
 | Branch | Session | Tool | Focus |
 |--------|---------|------|-------|
-| `main` | Session 1 · JS | StackBlitz | Hooks, context, async patterns |
+| `main` | Session 1 · JS | Snack | Hooks, context, async patterns, first native-only API |
 | `session-2` | Session 2 · CSS | Snack | StyleSheet, Flexbox, platform styles |
 | `session-3` | Session 3 · HTML | Snack + Expo Go | Components, FlatList, Navigation |
 | `session-4` | Session 4 · Hardware | Local + Expo Go | Camera, location, permissions |
 
-## Opening in StackBlitz (Session 1)
+## Opening in Snack (Session 1)
 
-```
-https://stackblitz.com/github/YOUR_USERNAME/react-to-native/tree/main/session-1-js
-```
-
-Replace `YOUR_USERNAME` with your GitHub username after pushing this repo.
+Upload `session-1-native/` into a new project at [snack.expo.dev](https://snack.expo.dev),
+or scan the Snack QR with Expo Go.
