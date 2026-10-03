@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react';
 
-export function useFetch(url) {
-  const [data, setData]         = useState(null);
-  const [loading, setLoading]   = useState(true);
-  const [error, setError]       = useState(null);
+interface UseFetchResult<T> {
+  data: T | null;
+  loading: boolean;
+  error: Error | null;
+  retry: () => void;
+}
+
+export function useFetch<T>(url: string): UseFetchResult<T> {
+  const [data, setData]             = useState<T | null>(null);
+  const [loading, setLoading]       = useState(true);
+  const [error, setError]           = useState<Error | null>(null);
   const [retryCount, setRetryCount] = useState(0);
 
   useEffect(() => {
@@ -16,7 +23,7 @@ export function useFetch(url) {
         const json = await res.json();
         setData(json);
       } catch (err) {
-        setError(err);
+        setError(err as Error);
       } finally {
         setLoading(false);
       }

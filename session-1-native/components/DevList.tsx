@@ -1,11 +1,12 @@
 import { ScrollView, Text, ActivityIndicator } from 'react-native';
 import { useFetch } from '../hooks/useFetch';
 import { DevCard } from './DevCard';
+import { Dev } from '../types';
 
 const API_URL = 'https://jsonplaceholder.typicode.com/users';
 
 export function DevList() {
-  const { data: devs, loading, error, retry } = useFetch(API_URL);
+  const { data: devs, loading, error } = useFetch<Dev[]>(API_URL);
 
   if (loading) return <ActivityIndicator style={{ marginTop: 48 }} />;
 
@@ -25,5 +26,5 @@ export function DevList() {
 }
 
 const styles = {
-  state: { textAlign: 'center', color: '#6b7280', padding: 48, fontSize: 14 },
+  state: { textAlign: 'center' as const, color: '#6b7280', padding: 48, fontSize: 14 },
 };

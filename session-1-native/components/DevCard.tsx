@@ -1,7 +1,12 @@
 import { View, Text, Pressable, StyleSheet, Linking } from 'react-native';
 import { useFavorites } from '../context/FavoritesContext';
+import { Dev } from '../types';
 
-export function DevCard({ dev }) {
+interface DevCardProps {
+  dev: Dev;
+}
+
+export function DevCard({ dev }: DevCardProps) {
   const { isFavorite, toggleFavorite } = useFavorites();
   const fav = isFavorite(dev.id);
 
