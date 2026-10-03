@@ -1,20 +1,25 @@
 import { ScrollView, Text, ActivityIndicator } from 'react-native';
 import { useFetch } from '../hooks/useFetch';
 import { DevCard } from './DevCard';
+import { Dev } from '../types';
 
 const API_URL = 'https://jsonplaceholder.typicode.com/users';
 
 // ─────────────────────────────────────────────
 // BASE · Wire useFetch into this component
 // ─────────────────────────────────────────────
-// 1. Call useFetch with API_URL
+// 1. Call useFetch<Dev[]> with API_URL
 // 2. Replace the hardcoded { data: null, loading: true, error: null }
 //    with the real values from the hook
 // ─────────────────────────────────────────────
 
 export function DevList() {
-  // TODO: replace this line with useFetch
-  const { data: devs, loading, error } = { data: null, loading: true, error: null };
+  // TODO: replace this line with useFetch<Dev[]>(API_URL)
+  const { data: devs, loading, error } = { data: null, loading: true, error: null } as {
+    data: Dev[] | null;
+    loading: boolean;
+    error: Error | null;
+  };
 
   if (loading) return <ActivityIndicator style={{ marginTop: 48 }} />;
 
@@ -35,5 +40,5 @@ export function DevList() {
 }
 
 const styles = {
-  state: { textAlign: 'center', color: '#6b7280', padding: 48, fontSize: 14 },
+  state: { textAlign: 'center' as const, color: '#6b7280', padding: 48, fontSize: 14 },
 };

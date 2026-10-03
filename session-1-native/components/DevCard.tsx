@@ -1,10 +1,15 @@
 import { View, Text, Pressable, StyleSheet, Linking } from 'react-native';
 import { useFavorites } from '../context/FavoritesContext';
+import { Dev } from '../types';
 
 // Favorites wiring below is fully provided — no changes needed.
 // Once you implement FavoritesContext, the ★ button will work automatically.
 
-export function DevCard({ dev }) {
+interface DevCardProps {
+  dev: Dev;
+}
+
+export function DevCard({ dev }: DevCardProps) {
   const { isFavorite, toggleFavorite } = useFavorites();
   const fav = isFavorite(dev.id);
 

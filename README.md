@@ -8,7 +8,7 @@ always build on something familiar.
 
 | Branch | Session | Tool | Focus |
 |--------|---------|------|-------|
-| `main` | Session 1 · JS | Snack | Hooks, context, async patterns, first native-only API |
+| `main` | Session 1 · JS/TS | Snack | Hooks, context, async patterns, first native-only API |
 | `session-2` | Session 2 · CSS | Snack | StyleSheet, Flexbox, platform styles |
 | `session-3` | Session 3 · HTML | Snack + Expo Go | Components, FlatList, Navigation |
 | `session-4` | Session 4 · Hardware | Local + Expo Go | Camera, location, permissions |

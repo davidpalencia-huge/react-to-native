@@ -16,10 +16,16 @@ import { useState, useEffect } from 'react';
 //       Declare an async function inside and call it.
 // ─────────────────────────────────────────────
 
-export function useFetch(url) {
-  const [data, setData]       = useState(null);
+interface UseFetchResult<T> {
+  data: T | null;
+  loading: boolean;
+  error: Error | null;
+}
+
+export function useFetch<T>(url: string): UseFetchResult<T> {
+  const [data, setData]       = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError]     = useState(null);
+  const [error, setError]     = useState<Error | null>(null);
 
   useEffect(() => {
     // TODO: implement the fetch logic here

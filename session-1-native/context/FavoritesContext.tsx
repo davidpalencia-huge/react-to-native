@@ -1,11 +1,11 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 // ─────────────────────────────────────────────
 // MID · Implement this context
 // ─────────────────────────────────────────────
 // This context tracks which developer IDs the user has starred.
 //
-// The Provider already wraps the app in App.js.
+// The Provider already wraps the app in App.tsx.
 // DevCard already calls useFavorites() — you just need to make it work.
 //
 // Steps:
@@ -19,17 +19,24 @@ import { createContext, useContext, useState } from 'react';
 // Tip: treat favorites as an array of IDs (numbers).
 // ─────────────────────────────────────────────
 
-const FavoritesContext = createContext(null);
+interface FavoritesContextType {
+  favorites: number[];
+  toggleFavorite: (id: number) => void;
+  isFavorite: (id: number) => boolean;
+}
 
-export function FavoritesProvider({ children }) {
-  const [favorites, setFavorites] = useState([]); // array of dev IDs
+const FavoritesContext = createContext<FavoritesContextType | null>(null);
 
-  const toggleFavorite = (id) => {
+export function FavoritesProvider({ children }: { children: ReactNode }) {
+  const [favorites, setFavorites] = useState<number[]>([]);
+
+  const toggleFavorite = (id: number) => {
     // TODO
   };
 
-  const isFavorite = (id) => {
+  const isFavorite = (id: number) => {
     // TODO
+    return false;
   };
 
   return (
@@ -40,7 +47,7 @@ export function FavoritesProvider({ children }) {
 }
 
 // Already wired — don't change this.
-export function useFavorites() {
+export function useFavorites(): FavoritesContextType {
   const context = useContext(FavoritesContext);
   if (!context) throw new Error('useFavorites must be used within FavoritesProvider');
   return context;
