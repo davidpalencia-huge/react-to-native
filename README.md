@@ -13,6 +13,12 @@ always build on something familiar.
 | `session-3` | Session 3 · HTML | Snack + Expo Go | Components, FlatList, Navigation |
 | `session-4` | Session 4 · Hardware | Local + Expo Go | Camera, location, permissions |
 
+## Solutions
+
+Each session's solved version lives on a `solution/*` branch
+(Session 1: `solution/session-01-native-patterns`). On the exercise branch,
+`session-1-native/cheat-codes/` has copy-paste answers for every step.
+
 ## Opening in Snack (Session 1)
 
 Upload `session-1-native/` into a new project at [snack.expo.dev](https://snack.expo.dev),

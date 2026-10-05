@@ -1,19 +1,19 @@
-import { ScrollView, Text, ActivityIndicator } from 'react-native';
-import { useFetch } from '../hooks/useFetch';
+import { View, ScrollView, Text, Pressable, ActivityIndicator, StyleSheet } from 'react-native';
+import { useDevs } from '../hooks/useDevs';
 import { DevCard } from './DevCard';
-import { Dev } from '../types';
-
-const API_URL = 'https://jsonplaceholder.typicode.com/users';
 
 export function DevList() {
-  const { data: devs, loading, error } = useFetch<Dev[]>(API_URL);
+  const { data: devs, loading, error, retry } = useDevs();
 
   if (loading) return <ActivityIndicator style={{ marginTop: 48 }} />;
 
   if (error) return (
-    <Text style={styles.state}>
-      Error: {error.message}
-    </Text>
+    <View style={styles.state}>
+      <Text style={styles.stateText}>Error: {error.message}</Text>
+      <Pressable style={styles.retryBtn} onPress={retry}>
+        <Text style={styles.retryText}>Retry</Text>
+      </Pressable>
+    </View>
   );
 
   return (
@@ -25,6 +25,9 @@ export function DevList() {
   );
 }
 
-const styles = {
-  state: { textAlign: 'center' as const, color: '#6b7280', padding: 48, fontSize: 14 },
-};
+const styles = StyleSheet.create({
+  state: { alignItems: 'center', padding: 48 },
+  stateText: { textAlign: 'center', color: '#6b7280', fontSize: 14, marginBottom: 16 },
+  retryBtn: { borderWidth: 1, borderColor: '#e5e7eb', borderRadius: 6, paddingVertical: 8, paddingHorizontal: 16 },
+  retryText: { fontSize: 14, color: '#374151' },
+});
