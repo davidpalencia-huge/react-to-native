@@ -14,6 +14,24 @@ export function DevCard({ dev }: DevCardProps) {
   const fav = isFavorite(dev.id);
 
   // ─────────────────────────────────────────────
+  // UI · Add an avatar with <Image>
+  // ─────────────────────────────────────────────
+  // Web → Native building blocks:
+  //   <div>  → <View>   (layout container; column by default)
+  //   <p>    → <Text>   (all text MUST live inside <Text>)
+  //   <img>  → <Image>  (source is an object, needs width + height)
+  //
+  //   1. Add `Image` to the react-native import at the top
+  //   2. Below, wrap the name/username <View> and a new <Image>
+  //      in a <View style={styles.identity}>
+  //   3. Image props: source={{ uri: avatarUrl }} style={styles.avatar}
+  //
+  // `identity` and `avatar` styles are already defined at the bottom.
+  // Try deleting width/height from `avatar` and see what happens.
+  // ─────────────────────────────────────────────
+  const avatarUrl = `https://api.dicebear.com/7.x/initials/png?seed=${encodeURIComponent(dev.name)}&size=96`;
+
+  // ─────────────────────────────────────────────
   // NATIVE · Open the email in the device's mail app
   // ─────────────────────────────────────────────
   // In web you'd just write <a href={`mailto:${dev.email}`}>.
@@ -49,6 +67,8 @@ export function DevCard({ dev }: DevCardProps) {
 const styles = StyleSheet.create({
   card: { padding: 18, borderRadius: 12, borderWidth: 1, borderColor: '#e5e7eb', marginBottom: 12, backgroundColor: '#fff' },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 },
+  identity: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  avatar: { width: 44, height: 44, borderRadius: 22, backgroundColor: '#e5e7eb' },
   name: { fontSize: 15, fontWeight: '600', color: '#111827' },
   username: { fontSize: 12, color: '#9ca3af' },
   email: { fontSize: 13, color: '#374151', marginBottom: 4 },
