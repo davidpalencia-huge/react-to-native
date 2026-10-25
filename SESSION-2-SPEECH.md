@@ -45,7 +45,6 @@ Tap **+ Card**. Change the rarity chips.
 **Tips**
 
 - Do the Legendary drag slowly. It's the moment everyone remembers.
-- Tell them the app is standalone. It is not the Dev Directory.
 - Don't explain code yet. Just show.
 
 ---

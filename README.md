@@ -1,9 +1,8 @@
 # React → React Native Workshop
 
 A 4-workshop series that bridges React fluency to React Native capability.
-Workshops 1, 3 and 4 build on the same app — **Dev Directory** — so participants
-always build on something familiar. Workshop 2 is a standalone app, **Card Vault**,
-so styling is the protagonist.
+Each workshop has its own exercise app, focused on the layer it teaches:
+Workshop 1 uses **Dev Directory**, Workshop 2 uses **Card Vault**.
 
 ## Workshops
 
