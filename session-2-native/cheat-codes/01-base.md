@@ -35,7 +35,6 @@ attackName: { flex: 1, fontSize: f(15), /* ...rest unchanged */ },
 | `flex: 1` | `flex: 1` | `art` takes all leftover height, so the card keeps its shape at any width. |
 | `gap` | `gap` | Supported since RN 0.71. |
 | `justify-content: space-between` | `justifyContent: 'space-between'` | Same name, camelCase. |
-
 | `flex: 1` on a `Text` inside a row | `flex: 1` | The name takes the free space and pushes HP to the right edge. |
 
 Try deleting `flex: 1` from `art` and watch the artwork window collapse to nothing.

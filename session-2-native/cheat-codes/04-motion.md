@@ -72,7 +72,7 @@ Replace the three constants:
 ```tsx
 const translateX = x.interpolate({ inputRange: [-1, 1], outputRange: [width * 0.6, -width * 0.6] });
 const translateY = y.interpolate({ inputRange: [-1, 1], outputRange: [height * 0.4, -height * 0.4] });
-const opacity = x.interpolate({ inputRange: [-1, 0, 1], outputRange: [0.5, 0.18, 0.5] });
+const opacity = x.interpolate({ inputRange: [-1, 0, 1], outputRange: [0.5, 0.12, 0.5] });
 ```
 
 Open a Legendary card and drag. The rainbow follows your finger.
