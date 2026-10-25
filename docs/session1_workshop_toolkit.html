@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Session 01 · JS in React Native</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream:  #f0ebe2;
+    --white:  #ffffff;
+    --black:  #111111;
+    --pink:   #ff1f8e;
+    --green:  #00e500;
+    --border: #ddd8cf;
+    --muted:  #888880;
+    --sans:   'Google Sans', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --mono:   'DM Mono', 'IBM Plex Mono', monospace;
+  }
+
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--black);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 0 40px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 0;
+  }
+  .huge-mark {
+    width: 28px; height: 28px;
+    background: var(--pink);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: var(--white);
+    flex-shrink: 0;
+    border-radius: 2px;
+  }
+  .brand-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    opacity: .5;
+    letter-spacing: .02em;
+  }
+  .brand-label strong { color: var(--white); opacity: 1; font-weight: 700; }
+
+  /* ── NAV ── */
+  nav { display: flex; gap: 0; }
+  .nav-item {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 0 20px;
+    color: rgba(255,255,255,.45);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    transition: color .15s, border-color .15s;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .nav-item:hover { color: rgba(255,255,255,.75); }
+  .nav-item.active { color: var(--white); border-bottom-color: var(--pink); }
+
+  /* ── PROGRESS ── */
+  .progress-bar { height: 2px; background: #2a2a2a; }
+  .progress-fill { height: 100%; background: var(--pink); transition: width .3s ease; }
+
+  /* ── MAIN ── */
+  main { max-width: 920px; margin: 0 auto; padding: 56px 40px 100px; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .section-heading {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: .95;
+    margin-bottom: 8px;
+    letter-spacing: -.01em;
+  }
+  .section-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+
+  /* ── FILTER CONTROLS ── */
+  .map-controls {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .filter-btn {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .filter-btn:hover { border-color: var(--black); color: var(--black); }
+  .filter-btn.active-filter { background: var(--black); color: var(--white); border-color: var(--black); }
+  .btn-ghost {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .btn-ghost:hover { border-color: var(--black); color: var(--black); }
+
+  /* ── TRANSFER MAP TABLE ── */
+  .map-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .map-table thead th {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 10px 18px;
+    border-bottom: 2px solid var(--black);
+    background: var(--cream);
+  }
+  .map-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background .1s;
+  }
+  .map-table tbody tr:hover { background: var(--white); }
+  .map-table td { padding: 14px 18px; vertical-align: top; }
+  .map-table td.react-col  { width: 30%; }
+  .map-table td.native-col { width: 28%; }
+  .map-table td.notes-col  { width: 42%; font-size: 13px; color: var(--muted); }
+
+  .map-table tbody tr:not(.revealed) td.native-col,
+  .map-table tbody tr:not(.revealed) td.notes-col {
+    opacity: 0; filter: blur(5px); transition: opacity .3s, filter .3s;
+    user-select: none;
+  }
+  .map-table tbody tr.revealed td.native-col,
+  .map-table tbody tr.revealed td.notes-col {
+    opacity: 1; filter: none; transition: opacity .3s, filter .3s;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-left: 8px;
+    vertical-align: middle;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+  .badge.transfer { background: var(--pink); color: var(--white); }
+  .badge.adjust   { background: var(--black); color: var(--white); }
+  .badge.gone     { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+
+  .code {
+    font-family: var(--mono);
+    font-size: 13px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 2px;
+  }
+  .reveal-hint {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    padding: 14px;
+    font-family: var(--mono);
+  }
+
+  /* ── TROUBLESHOOTING ── */
+  .trouble-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .trouble-header {
+    padding: 20px 28px;
+    background: var(--black);
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .trouble-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .trouble-title { font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+  .trouble-sub   { font-size: 13px; color: rgba(255,255,255,.45); }
+  .trouble-body  { padding: 28px; }
+  .trouble-body details { margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
+  .trouble-body details:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+  .trouble-body summary {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--black);
+    cursor: pointer;
+    margin-bottom: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .trouble-body summary::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--pink);
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+    transition: transform .2s;
+  }
+  details[open] summary::before { transform: scale(1.3); }
+  .trouble-body p { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 10px; }
+  .trouble-body p strong { color: var(--black); }
+  pre {
+    background: var(--black);
+    border-radius: 2px;
+    padding: 16px 18px;
+    font-family: var(--mono);
+    font-size: 12px;
+    overflow-x: auto;
+    margin: 10px 0;
+    line-height: 1.7;
+    color: #e0e0e0;
+  }
+  pre .c { color: #666; }
+  pre .g { color: var(--green); }
+  pre .p { color: #ff9d9d; }
+  pre .e { color: #ff6b6b; }
+  pre .w { color: #ffd166; }
+
+  /* ── PRACTICE ── */
+  .stackblitz-block {
+    background: var(--black);
+    padding: 36px 40px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    border-radius: 2px;
+  }
+  .sb-text h2 { font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .sb-text p  { font-size: 13px; color: rgba(255,255,255,.45); }
+  .sb-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--pink);
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 28px;
+    border-radius: 2px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity .15s;
+    flex-shrink: 0;
+  }
+  .sb-link:hover { opacity: .85; }
+
+  .help-note {
+    border-left: 3px solid var(--pink);
+    padding: 12px 18px;
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    background: var(--white);
+    border-radius: 0 2px 2px 0;
+  }
+  .help-note strong { color: var(--black); font-weight: 700; }
+
+  .levels { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+  .level-card { background: var(--white); border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+  .level-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .level-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+  .level-tag.base    { background: var(--pink);  color: var(--white); }
+  .level-tag.mid     { background: var(--black); color: var(--white); }
+  .level-tag.stretch { background: transparent;  color: var(--muted); border: 1px solid var(--border); }
+  .level-title { font-size: 15px; font-weight: 700; }
+  .level-time  { font-size: 12px; color: var(--muted); margin-left: auto; font-family: var(--mono); }
+  .level-body  { padding: 20px 22px; }
+  .level-step  { display: flex; gap: 14px; margin-bottom: 12px; align-items: flex-start; }
+  .level-step:last-child { margin-bottom: 0; }
+  .step-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    color: var(--muted);
+    margin-top: 1px;
+  }
+  .level-step p { font-size: 14px; line-height: 1.6; }
+  .level-step p span { color: var(--muted); font-size: 13px; }
+  .done-when {
+    margin-top: 14px;
+    padding: 10px 16px;
+    background: var(--cream);
+    border-radius: 2px;
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .done-when::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .done-when strong { color: var(--black); font-weight: 700; }
+
+  .discussion-block h3 {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .dq {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--black);
+    border-radius: 0 2px 2px 0;
+    padding: 13px 18px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 80px;
+  }
+  .footer-brand { display: flex; align-items: center; gap: 10px; }
+  .footer-text { font-size: 12px; color: rgba(255,255,255,.3); }
+
+  @media (max-width: 640px) {
+    .header-inner { padding: 0 20px; }
+    main { padding: 36px 20px 80px; }
+    .stackblitz-block { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .section-heading { font-size: 28px; }
+    footer { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="huge-mark">H</div>
+      <div class="brand-label"><strong>Session 01</strong> &nbsp;·&nbsp; JS in React Native</div>
+    </div>
+    <nav id="nav">
+      <div class="nav-item active" onclick="goTo(0)">JS Patterns</div>
+      <div class="nav-item" onclick="goTo(1)">Troubleshooting</div>
+      <div class="nav-item" onclick="goTo(2)">Practice</div>
+    </nav>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:33%"></div></div>
+</header>
+
+<main>
+
+  <!-- ── 0. TRANSFER MAP ── -->
+  <section class="section active" id="s0">
+    <div class="section-eyebrow">Session 01 · JS Patterns</div>
+    <div class="section-heading">Transfer Map.</div>
+    <div class="section-sub">Click any row to reveal its React Native equivalent.</div>
+
+    <div class="map-controls">
+      <span style="font-size:13px;color:var(--muted);margin-right:4px">Filter:</span>
+      <button class="filter-btn active-filter" onclick="filterMap('all', this)">All</button>
+      <button class="filter-btn" onclick="filterMap('transfer', this)">Direct transfer</button>
+      <button class="filter-btn" onclick="filterMap('adjust', this)">Small adjustment</button>
+      <button class="filter-btn" onclick="filterMap('gone', this)">Gone</button>
+      <button class="btn-ghost" style="margin-left:auto" onclick="revealAll()">Reveal all</button>
+      <button class="btn-ghost" onclick="hideAll()">Hide all</button>
+    </div>
+
+    <table class="map-table">
+      <thead>
+        <tr>
+          <th>React Web</th>
+          <th>React Native</th>
+          <th>What changes</th>
+        </tr>
+      </thead>
+      <tbody id="mapBody"></tbody>
+    </table>
+    <div class="reveal-hint">↑ click any row to reveal</div>
+  </section>
+
+  <!-- ── 1. TROUBLESHOOTING ── -->
+  <section class="section" id="s1">
+    <div class="section-eyebrow">Session 01 · Troubleshooting</div>
+    <div class="section-heading">The issue you'll run into today.</div>
+    <div class="section-sub">What it looks like · why it happens · how to fix it.</div>
+
+    <div class="trouble-card">
+      <div class="trouble-header">
+        <div class="trouble-icon">📦</div>
+        <div>
+          <div class="trouble-title">Library Compatibility.</div>
+          <div class="trouble-sub">Not every npm package works in React Native.</div>
+        </div>
+      </div>
+      <div class="trouble-body">
+        <details open>
+          <summary>What it looks like</summary>
+          <p>You install an npm package, it works fine on web, then fails in Native with <span class="code">undefined is not an object</span> — or it installs but silently does nothing.</p>
+        </details>
+        <details open>
+          <summary>Why it happens</summary>
+          <p>Web libraries often rely on <span class="code">document</span>, <span class="code">window</span>, or other browser APIs that don't exist in React Native. There's no DOM — only the native bridge.</p>
+        </details>
+        <details open>
+          <summary>How to evaluate a library before using it</summary>
+          <pre><span class="c">// Look for "react-native" in the package's keywords
+// or as a peerDependency — that's the signal it's safe.</span>
+
+<span class="c">// Common replacements:</span>
+<span class="e">react-router</span>   →  <span class="g">react-navigation</span>
+<span class="e">localStorage</span>   →  <span class="g">AsyncStorage</span>
+<span class="e">react-modal</span>    →  <span class="g">Modal (built-in RN)</span>
+<span class="e">styled-comps</span>   →  <span class="g">StyleSheet / NativeWind</span>
+
+<span class="c">// These work directly — no changes needed:</span>
+<span class="g">fetch()   date-fns   lodash   zod   zustand</span></pre>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2. PRACTICE ── -->
+  <section class="section" id="s2">
+    <div class="section-eyebrow">Session 01 · Practice Lab</div>
+    <div class="section-heading">Dev Directory.</div>
+    <div class="section-sub">Open the project and complete the levels in order.</div>
+
+    <div class="stackblitz-block">
+      <div class="sb-text">
+        <h2>Open the project in StackBlitz.</h2>
+        <p>No installation. Runs directly in the browser.</p>
+      </div>
+      <a class="sb-link" href="https://stackblitz.com/github/davidpalencia-huge/react-to-native/tree/main/session-1-js?file=README.md" target="_blank">
+        Open project ↗
+      </a>
+    </div>
+
+    <div class="help-note">
+      <strong>Need help?</strong> Paste your StackBlitz link in the call chat and someone will jump in.
+    </div>
+
+    <div class="levels">
+
+      <div class="level-card">
+        <div class="level-header">
+          <span class="level-tag base">Base</span>
+          <span class="level-title">Fetch and display the developers.</span>
+          <span class="level-time">10–12 min</span>
+        </div>
+        <div class="level-body">
+          <div class="level-step">
+            <div class="step-num">1</div>
+            <p>Open <span class="code">src/hooks/useFetch.js</span> — implement the hook following the comments</p>
+          </div>
+          <div class="level-step">
+            <div class="step-num">2</div>
+            <p>Open <span class="code">src/components/DevList.jsx</span> — replace the hardcoded object with a real <span class="code">useFetch</span> call</p>
+          </div>
+          <div class="done-when"><strong>Done when:</strong> you see a list of developer cards on screen.</div>
+        </div>
+      </div>
+
+      <div class="level-card">
+        <div class="level-header">
+          <span class="level-tag mid">Mid</span>
+          <span class="level-title">Make the ★ button work.</span>
+          <span class="level-time">5–8 min</span>
+        </div>
+        <div class="level-body">
+          <div class="level-step">
+            <div class="step-num">3</div>
+            <p>Open <span class="code">src/context/FavoritesContext.jsx</span> — implement <span class="code">toggleFavorite</span> and <span class="code">isFavorite</span></p>
+          </div>
+          <div class="done-when"><strong>Done when:</strong> clicking ★ highlights a card, clicking again removes it.</div>
+        </div>
+      </div>
+
+      <div class="level-card">
+        <div class="level-header">
+          <span class="level-tag stretch">Stretch</span>
+          <span class="level-title">If you finish early.</span>
+          <span class="level-time">open-ended</span>
+        </div>
+        <div class="level-body">
+          <div class="level-step">
+            <div class="step-num">4</div>
+            <p>Add <span class="code">retry()</span> to <span class="code">useFetch</span> <span>— read the Stretch section at the bottom of the hook file</span></p>
+          </div>
+          <div class="level-step">
+            <div class="step-num">5</div>
+            <p>Abstract a <span class="code">useDevs()</span> custom hook that wraps <span class="code">useFetch</span> with the API URL baked in</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="discussion-block">
+      <h3>Discussion</h3>
+      <div class="dq">What felt exactly like React Web?</div>
+      <div class="dq">What surprised you?</div>
+      <div class="dq">Where did you have to think differently?</div>
+      <div class="dq">What library did you miss? Could you replace it?</div>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-brand">
+    <div class="huge-mark">H</div>
+    <span class="footer-text">© Huge 2026 &nbsp;·&nbsp; Private & Confidential</span>
+  </div>
+</footer>
+
+<script>
+const mapData = [
+  { react: 'useState',              native: 'useState',              status: 'transfer', notes: 'Identical. React state management works exactly the same in RN.' },
+  { react: 'useEffect',             native: 'useEffect',             status: 'transfer', notes: 'Identical. Same lifecycle, same deps array, same cleanup rules.' },
+  { react: 'useContext',            native: 'useContext',            status: 'transfer', notes: 'Identical. Context API is part of React core — nothing changes.' },
+  { react: 'useReducer',            native: 'useReducer',            status: 'transfer', notes: 'Identical. Redux patterns work the same.' },
+  { react: 'Custom hooks',          native: 'Custom hooks',          status: 'transfer', notes: 'Identical. Your business logic in hooks is 100% reusable.' },
+  { react: 'fetch() / async-await', native: 'fetch() (built-in)',    status: 'transfer', notes: 'RN ships with fetch() by default. Same API, same syntax.' },
+  { react: 'Functional components', native: 'Functional components', status: 'transfer', notes: 'Same function structure, same props, same composition model.' },
+  { react: 'onClick',               native: 'onPress',               status: 'adjust',   notes: 'Touch events are called Press, not Click. Used with Pressable or TouchableOpacity.' },
+  { react: 'React Router',          native: 'React Navigation',      status: 'adjust',   notes: 'Similar concept, different API. Stack, Tab, and Drawer navigators. Covered in Session 3.' },
+  { react: 'npm packages (web)',    native: 'Check before you use',  status: 'adjust',   notes: "Many work, some don't. Rule of thumb: if it uses window or document, it will break." },
+  { react: 'window / document',     native: '(does not exist)',      status: 'gone',     notes: 'No DOM in React Native. These APIs have no direct equivalent.' },
+  { react: 'localStorage',          native: 'AsyncStorage',          status: 'gone',     notes: 'The alternative is async — not sync. Requires await everywhere.' },
+];
+
+const statusLabel = { transfer: 'Direct', adjust: 'Adjust', gone: 'Gone' };
+
+function renderMap(filter) {
+  const body = document.getElementById('mapBody');
+  body.innerHTML = '';
+  mapData.filter(r => filter === 'all' || r.status === filter).forEach(row => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="react-col"><span class="code">${row.react}</span><span class="badge ${row.status}">${statusLabel[row.status]}</span></td>
+      <td class="native-col"><span class="code">${row.native}</span></td>
+      <td class="notes-col">${row.notes}</td>
+    `;
+    tr.onclick = () => tr.classList.toggle('revealed');
+    body.appendChild(tr);
+  });
+}
+renderMap('all');
+
+function filterMap(f, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active-filter'));
+  btn.classList.add('active-filter');
+  renderMap(f);
+}
+function revealAll() { document.querySelectorAll('#mapBody tr').forEach(r => r.classList.add('revealed')); }
+function hideAll()   { document.querySelectorAll('#mapBody tr').forEach(r => r.classList.remove('revealed')); }
+
+const progress = [33, 66, 100];
+function goTo(idx) {
+  document.querySelectorAll('.section').forEach((s, i) => s.classList.toggle('active', i === idx));
+  document.querySelectorAll('.nav-item').forEach((n, i) => n.classList.toggle('active', i === idx));
+  document.getElementById('progressFill').style.width = progress[idx] + '%';
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
