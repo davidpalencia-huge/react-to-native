@@ -1,8 +1,8 @@
 # React → React Native Workshop
 
-A 4-session workshop series that bridges React fluency to React Native capability.
-Each session adds a layer to the same app — **Dev Directory** — so participants
-always build on something familiar.
+A 4-workshop series that bridges React fluency to React Native capability.
+Each workshop has its own exercise app, focused on the layer it teaches:
+Workshop 1 uses **Dev Directory**, Workshop 2 uses **Card Vault**.
 
 ## Sessions
 
