@@ -23,7 +23,7 @@ export interface RarityTheme {
   borderWidth: number;   // frame thickness at the 260px design size
   glowRadius: number;    // 0 = no glow
   sheen: number;         // 0–1, strength of the glass reflection over the card
-  richness: 0 | 1 | 2 | 3; // how much decoration the artwork window gets
+  richness: number;      // 0–3, how much decoration the artwork window gets
   float: number;         // px the card bobs up and down in the viewer. 0 = still
   entrance: Entrance;
   effects: EffectFlags;
