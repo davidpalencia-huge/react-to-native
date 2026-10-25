@@ -14,9 +14,9 @@ interface CardFaceProps {
   animate?: boolean; // the creature breathes
 }
 
-// The JSX below is complete, and so are CardArt, ElementBadge and RarityGems
-// (read them — that is where the polished look lives).
-// Right now the sections are stacked in a column. Turning them into a real card layout is your job.
+// BASE · the card layout. Pure Flexbox — no rarity effects in here.
+// The same component renders the 165px grid thumbnail and the 340px viewer,
+// so every size is derived from `width`.
 export function CardFace({ card, width, animate = false }: CardFaceProps) {
   const unit = width / 300;
   const styles = useMemo(() => makeStyles(width), [width]);
@@ -64,41 +64,16 @@ export function CardFace({ card, width, animate = false }: CardFaceProps) {
 }
 
 function makeStyles(width: number) {
-  // Everything scales from the card width: 300px is the "design size".
-  //   s(n) → a length that scales with the card
-  //   f(n) → a font size that scales, never below 9
   const u = width / 300;
   const s = (n: number) => n * u;
   const f = (n: number) => Math.max(9, Math.round(n * u));
 
   return StyleSheet.create({
-    // ─────────────────────────────────────────────
-    // BASE · Flexbox layout — fill in the five empty styles
-    // ─────────────────────────────────────────────
-    // Remember: every View is already `display: flex` with flexDirection 'column'.
-    // Gap is supported. Use the s() helper for sizes so the grid thumbnails scale.
-    //
-    //   header      → ROW, vertically centered, gap s(8)  (badge · name · HP)
-    //   art         → takes ALL leftover height: flex: 1
-    //   metaRow     → ROW, gems on the left and rarity label on the right,
-    //                 vertically centered, paddingHorizontal s(4)
-    //   attackPanel → padding s(8), gap s(6), borderRadius s(10), borderWidth 1,
-    //                 borderColor 'rgba(255,255,255,0.14)', backgroundColor 'rgba(0,0,0,0.3)'
-    //   attackRow   → ROW, name left and damage badge right, vertically centered, gap s(8)
-    //   name, attackName (further down) → add `flex: 1` so they take the free space in their row
-    //                 and push HP / damage to the right. In a column, flex: 1 would shrink them to nothing.
-    // ─────────────────────────────────────────────
-    // Provided: the card container. `space-between` spreads the sections over the full height.
-    // Once `art` has flex: 1 there is no free space left and it stops doing anything.
     face: { flex: 1, padding: s(10), gap: s(8), justifyContent: 'space-between' },
-    header: {},
-    art: {},
-    metaRow: {},
-    attackPanel: {},
-    attackRow: {},
 
-    // Typography and badges are already done — read them, they are the part that differs per OS.
+    header: { flexDirection: 'row', alignItems: 'center', gap: s(8) },
     name: {
+      flex: 1,
       fontFamily: fonts.heading,
       fontSize: f(20),
       fontWeight: '700',
@@ -109,8 +84,22 @@ function makeStyles(width: number) {
     },
     hp: { fontFamily: fonts.mono, fontSize: f(19), fontWeight: '700', color: colors.text },
     hpLabel: { fontSize: f(10), fontWeight: '700', letterSpacing: 0.5 },
+
+    art: { flex: 1 },
+
+    metaRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: s(4) },
     rarityLabel: { fontSize: f(10), fontWeight: '700', letterSpacing: 1.5, textTransform: 'uppercase' },
-    attackName: { fontSize: f(15), fontWeight: '700', color: colors.text },
+
+    attackPanel: {
+      padding: s(8),
+      gap: s(6),
+      borderRadius: s(10),
+      borderWidth: 1,
+      borderColor: 'rgba(255,255,255,0.14)',
+      backgroundColor: 'rgba(0,0,0,0.3)',
+    },
+    attackRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: s(8) },
+    attackName: { flex: 1, fontSize: f(15), fontWeight: '700', color: colors.text },
     damage: {
       minWidth: s(40),
       paddingVertical: s(2),

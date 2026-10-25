@@ -8,7 +8,7 @@ interface CardArtProps {
   card: Card;
   frame: GradientColors; // same metal as the card frame, so the window feels part of it
   unit: number;          // card width / 300 — scales borders and radii
-  richness: 0 | 1 | 2 | 3; // how much decoration to draw (see theme/rarity.ts)
+  richness: number; // 0–3, how much decoration to draw (see theme/rarity.ts)
   animate?: boolean;     // the creature breathes
   style?: StyleProp<ViewStyle>;
 }

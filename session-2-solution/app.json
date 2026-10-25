@@ -1,9 +1,0 @@
-{
-  "expo": {
-    "name": "Card Vault",
-    "slug": "card-vault-session-2-solution",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "platforms": ["ios", "android", "web"]
-  }
-}

@@ -6,32 +6,30 @@ Workshop 1 uses **Dev Directory**, Workshop 2 uses **Card Vault**.
 
 ## Workshops
 
-| Branch | Workshop | Tool | Focus |
-|--------|---------|------|-------|
-| `main` | Workshop 1 · JS/TS | Snack | Hooks, context, async patterns, first native-only API |
-| `session-2` | Workshop 2 · CSS (Card Vault) | Snack | StyleSheet, Flexbox, platform styles, animation |
-| `session-3` | Workshop 3 · HTML | Snack + Expo Go | Components, FlatList, Navigation |
-| `session-4` | Workshop 4 · Hardware | Local + Expo Go | Camera, location, permissions |
+| Branch | Workshop | App | Tool | Focus |
+|--------|----------|-----|------|-------|
+| `main` | Workshop 1 · JS/TS | Dev Directory | Snack | Hooks, context, async patterns, first native-only API |
+| `session-2` | Workshop 2 · CSS | Card Vault | Snack | StyleSheet, Flexbox, platform styles, animation |
+| `session-3` | Workshop 3 · HTML | — | Snack + Expo Go | Components, FlatList, Navigation |
+| `session-4` | Workshop 4 · Hardware | — | Local + Expo Go | Camera, location, permissions |
 
 ## Solutions
 
-Each workshop's solved version lives on a `solution/*` branch:
+Each workshop has an exercise branch and a solution branch. Both use the same
+folder name, so you can diff them directly.
 
-- Workshop 1: `solution/session-01-native-patterns`
-- Workshop 2: `solution/session-02-card-vault`
+| Workshop | Exercise | Solution |
+|----------|----------|----------|
+| 1 | `main` → `session-1-native/` | `solution/session-01-native-patterns` |
+| 2 | `session-2` → `session-2-native/` | `solution/session-02-card-vault` |
 
-On the exercise branch, `session-1-native/cheat-codes/` and
-`session-2-native/cheat-codes/` have copy-paste answers for every step.
+On the exercise branch, `session-N-native/cheat-codes/` has copy-paste answers for every step.
 
-## Workshop 2 · Card Vault
+## Facilitator material
 
-- `session-2-native/` — exercise starter (Base, Mid, Platform, Motion, Stretch)
-- `SESSION-2-SPEECH.md` — facilitator script
-- `session2_workshop_toolkit.html` — participant toolkit
-
-Stack: Expo SDK 58, React Native 0.88, built-in `Animated`, `expo-linear-gradient`.
+`docs/` on `main` holds the speeches and participant toolkits for each workshop.
 
 ## Opening in Snack
 
-Upload `session-1-native/` (Workshop 1) or `session-2-native/` (Workshop 2) into a new
+Upload the workshop folder (`session-1-native/` or `session-2-native/`) into a new
 project at [snack.expo.dev](https://snack.expo.dev), or scan the Snack QR with Expo Go.
