@@ -32,52 +32,11 @@ export function usePulse(enabled: boolean, duration = 1400) {
 
 Rare, Epic and Legendary cards now breathe.
 
-## 2 · `components/card/ShimmerSweep.tsx`
+`ShimmerSweep.tsx` and `HoloFoil.tsx` are already built — read them. Epic and Legendary
+cards shimmer once `usePulse` and the glow are in place; on Legendary the foil follows your finger
+once the tilt below is applied.
 
-Imports:
-
-```tsx
-import { useEffect, useRef } from 'react';
-import { Animated, Easing, StyleSheet, View } from 'react-native';
-```
-
-Replace `const translateX = 0;` with:
-
-```tsx
-useEffect(() => {
-  const loop = Animated.loop(
-    Animated.sequence([
-      Animated.timing(progress, { toValue: 1, duration: 1400, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
-      Animated.delay(1600),
-      Animated.timing(progress, { toValue: 0, duration: 0, useNativeDriver: true }),
-    ])
-  );
-  loop.start();
-
-  return () => loop.stop();
-}, [progress]);
-
-const translateX = progress.interpolate({
-  inputRange: [0, 1],
-  outputRange: [-width * 0.8, width * 1.3],
-});
-```
-
-Also delete `left: width * 0.3,` from the band's style — the animation owns its horizontal position now.
-
-## 3 · `components/card/HoloFoil.tsx`
-
-Replace the three constants:
-
-```tsx
-const translateX = x.interpolate({ inputRange: [-1, 1], outputRange: [width * 0.6, -width * 0.6] });
-const translateY = y.interpolate({ inputRange: [-1, 1], outputRange: [height * 0.4, -height * 0.4] });
-const opacity = x.interpolate({ inputRange: [-1, 0, 1], outputRange: [0.5, 0.12, 0.5] });
-```
-
-Open a Legendary card and drag. The rainbow follows your finger.
-
-## 4 · `components/card/CardView.tsx`
+## 2 · `components/card/CardView.tsx`
 
 Import `Animated`:
 

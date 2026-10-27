@@ -37,13 +37,11 @@ Decks, cards, forms, grid, navigation and data all work. You only touch the styl
 | `hooks/useTilt.ts` | ✅ Complete | Nothing — drag gesture |
 | `components/card/CardFrame.tsx`, `CardArt.tsx`, `ElementBadge.tsx`, `RarityGems.tsx` | ✅ Complete | Read them — the polished look lives here |
 | `components/card/CardEntrance.tsx` | ✅ Complete | Read it — entrance + float animation, driven by `theme/rarity.ts` |
-| `components/card/CardFace.tsx` | 🔧 Incomplete | **Base** — Flexbox layout |
+| `components/card/GlowHalo.tsx`, `ShimmerSweep.tsx`, `HoloFoil.tsx` | ✅ Complete | Read them — the layered halo, the sweep and the foil |
+| `components/card/CardFace.tsx` | 🔧 Incomplete | **Base** — finish the attack panel (`header`, `art`, `metaRow` are done) |
 | `components/card/CardView.tsx` | 🔧 Incomplete | **Mid** + **Platform** + **Motion** |
 | `utils/platformShadow.ts` | 🔧 Incomplete | **Platform** |
-| `components/card/GlowHalo.tsx` | 🔧 Incomplete | **Platform** |
 | `hooks/usePulse.ts` | 🔧 Incomplete | **Motion** |
-| `components/card/ShimmerSweep.tsx` | 🔧 Incomplete | **Motion** |
-| `components/card/HoloFoil.tsx` | 🔧 Incomplete | **Motion** |
 | `components/card/Sparkles.tsx` | 🔧 Incomplete | **Stretch** |
 | `hooks/useReducedMotion.ts` | 🔧 Incomplete | **Stretch** |
 
@@ -54,11 +52,13 @@ and every rarity looks the same. That's your starting point.
 
 ## The exercise
 
-### Base · 10–12 min
+**Total: ~22–29 min** (without Stretch).
+
+### Base · 6–8 min
 **Goal:** lay out the card with Flexbox.
 
-1. Open `components/card/CardFace.tsx` — read the BASE comment block
-2. Fill in the five empty styles: `header`, `art`, `metaRow`, `attackPanel`, `attackRow`, then add `flex: 1` to `name` and `attackName`
+1. Open `components/card/CardFace.tsx` — read the BASE comment block and the three finished styles (`header`, `art`, `metaRow`)
+2. Fill in the two empty styles: `attackPanel`, `attackRow`, then add `flex: 1` to `name` and `attackName`
 
 | CSS | React Native | Note |
 |-----|--------------|------|
@@ -71,7 +71,7 @@ and every rarity looks the same. That's your starting point.
 
 ---
 
-### Mid · 5–8 min
+### Mid · 3–4 min
 **Goal:** make each rarity look different.
 
 3. Open `components/card/CardView.tsx` — read the MID comment
@@ -81,13 +81,12 @@ and every rarity looks the same. That's your starting point.
 
 ---
 
-### Platform · 10 min
+### Platform · 6–8 min
 **Goal:** add a glow that works on iOS **and** Android.
 
 5. `utils/platformShadow.ts` — implement `glowShadow` with `Platform.select`
 6. `components/card/CardView.tsx` — spread it into the card's style. **Check iOS.** Where did the shadow go?
-7. Wrap `CardFrame` in an outer View that owns the shadow. `CardFrame` keeps the clipping (`overflow: 'hidden'`)
-8. `components/card/GlowHalo.tsx` — build the layered halo, render it inside the outer View
+7. Wrap `CardFrame` in an outer View that owns the shadow. `CardFrame` keeps the clipping (`overflow: 'hidden'`). Render the ready-made `GlowHalo` (read it first) inside the outer View
 
 | Symptom | Cause |
 |---------|-------|
@@ -99,24 +98,24 @@ and every rarity looks the same. That's your starting point.
 
 ---
 
-### Motion · 12–15 min
+### Motion · 7–9 min
 **Goal:** Rare breathes, Epic shimmers, Legendary reacts to your finger.
 
-9. `hooks/usePulse.ts` — loop an opacity value with `Animated.loop`
-10. `components/card/ShimmerSweep.tsx` — animate the band with `translateX`
-11. `components/card/HoloFoil.tsx` — interpolate the tilt values into the foil position
-12. `components/card/CardView.tsx` — apply the tilt as a `transform` (`perspective` first!)
+8. `hooks/usePulse.ts` — loop an opacity value with `Animated.loop`
+9. `components/card/CardView.tsx` — apply the tilt as a `transform` (`perspective` first!)
+
+`ShimmerSweep.tsx` and `HoloFoil.tsx` are already built — read how they use `translateX` and `interpolate`.
 
 ✓ Done when: open the Legendary card and drag — the card tilts and the rainbow foil slides across it.
 
 ---
 
 ### Stretch
-13. Build `Sparkles.tsx` — six twinkling diamonds on Legendary cards
-14. Implement `useReducedMotion` — turn the effects off when the OS asks for less motion
-15. Create a new card in the app and watch the live preview change as you pick a rarity
-16. Open `theme/rarity.ts` and change the `entrance` of a rarity (try `rotateY: 180` on Rare). Press Prev / Next to replay it
-17. Add a sixth rarity row — no component should need to change
+10. Build `Sparkles.tsx` — six twinkling diamonds on Legendary cards
+11. Implement `useReducedMotion` — turn the effects off when the OS asks for less motion
+12. Create a new card in the app and watch the live preview change as you pick a rarity
+13. Open `theme/rarity.ts` and change the `entrance` of a rarity (try `rotateY: 180` on Rare). Press Prev / Next to replay it
+14. Add a sixth rarity row — no component should need to change
 
 ---
 

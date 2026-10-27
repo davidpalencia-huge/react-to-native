@@ -73,15 +73,13 @@ function makeStyles(width: number) {
 
   return StyleSheet.create({
     // ─────────────────────────────────────────────
-    // BASE · Flexbox layout — fill in the five empty styles
+    // BASE · Flexbox layout — fill in the two empty styles
     // ─────────────────────────────────────────────
     // Remember: every View is already `display: flex` with flexDirection 'column'.
     // Gap is supported. Use the s() helper for sizes so the grid thumbnails scale.
     //
-    //   header      → ROW, vertically centered, gap s(8)  (badge · name · HP)
-    //   art         → takes ALL leftover height: flex: 1
-    //   metaRow     → ROW, gems on the left and rarity label on the right,
-    //                 vertically centered, paddingHorizontal s(4)
+    // Already done: header, art, metaRow (read them — they are the pattern to follow).
+    //
     //   attackPanel → padding s(8), gap s(6), borderRadius s(10), borderWidth 1,
     //                 borderColor 'rgba(255,255,255,0.14)', backgroundColor 'rgba(0,0,0,0.3)'
     //   attackRow   → ROW, name left and damage badge right, vertically centered, gap s(8)
@@ -91,9 +89,9 @@ function makeStyles(width: number) {
     // Provided: the card container. `space-between` spreads the sections over the full height.
     // Once `art` has flex: 1 there is no free space left and it stops doing anything.
     face: { flex: 1, padding: s(10), gap: s(8), justifyContent: 'space-between' },
-    header: {},
-    art: {},
-    metaRow: {},
+    header: { flexDirection: 'row', alignItems: 'center', gap: s(8) },
+    art: { flex: 1 },
+    metaRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: s(4) },
     attackPanel: {},
     attackRow: {},
 

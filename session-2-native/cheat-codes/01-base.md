@@ -2,12 +2,9 @@
 
 ## `components/card/CardFace.tsx`
 
-Replace the five empty styles inside `makeStyles` (`face` is already provided):
+`face`, `header`, `art` and `metaRow` are already provided. Replace the two empty styles inside `makeStyles`:
 
 ```tsx
-header: { flexDirection: 'row', alignItems: 'center', gap: s(8) },
-art: { flex: 1 },
-metaRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: s(4) },
 attackPanel: {
   padding: s(8),
   gap: s(6),
@@ -32,7 +29,7 @@ attackName: { flex: 1, fontSize: f(15), /* ...rest unchanged */ },
 |-----|--------------|------|
 | `display: flex; flex-direction: column` | nothing | Every `View` is already a column flex container. |
 | `flex-direction: row` | `flexDirection: 'row'` | You have to ask for it. |
-| `flex: 1` | `flex: 1` | `art` takes all leftover height, so the card keeps its shape at any width. |
+| `flex: 1` | `flex: 1` | `art` (already provided) takes all leftover height, so the card keeps its shape at any width. |
 | `gap` | `gap` | Supported since RN 0.71. |
 | `justify-content: space-between` | `justifyContent: 'space-between'` | Same name, camelCase. |
 | `flex: 1` on a `Text` inside a row | `flex: 1` | The name takes the free space and pushes HP to the right edge. |

@@ -18,47 +18,9 @@ export function glowShadow(color: string, radius: number): ViewStyle {
 }
 ```
 
-## 2 · `components/card/GlowHalo.tsx`
+## 2 · `components/card/CardView.tsx`
 
-Android cannot draw a colored blur, so fake it with stacked translucent rectangles.
-
-```tsx
-import { Animated, StyleSheet, View } from 'react-native';
-import { usePulse } from '../../hooks/usePulse';
-
-const LAYERS = 10;
-
-export function GlowHalo({ color, size, radius, pulse }: GlowHaloProps) {
-  const opacity = usePulse(pulse);
-
-  if (size === 0) return null;
-
-  return (
-    <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { opacity }]}>
-      {Array.from({ length: LAYERS }, (_, i) => {
-        const spread = (size * (i + 1)) / LAYERS;
-        return (
-          <View
-            key={i}
-            style={{
-              position: 'absolute',
-              top: -spread,
-              left: -spread,
-              right: -spread,
-              bottom: -spread,
-              borderRadius: radius + spread,
-              backgroundColor: color,
-              opacity: 0.085,
-            }}
-          />
-        );
-      })}
-    </Animated.View>
-  );
-}
-```
-
-## 3 · `components/card/CardView.tsx`
+`GlowHalo.tsx` is already built. Android cannot draw a colored blur, so it fakes one with stacked translucent rectangles. Read it, then render it here.
 
 Wrap `CardFrame` in an outer View. The outer one owns the shadow, `CardFrame` owns the clipping.
 

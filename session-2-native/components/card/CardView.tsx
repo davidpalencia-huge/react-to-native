@@ -41,7 +41,7 @@ export function CardView({ card, width, animated = false, tilt }: CardViewProps)
   //   Tip: the component never asks `card.rarity === 'rare'` — it reads a row.
   //
   // ─────────────────────────────────────────────
-  // PLATFORM · glow + the shadow trap  (see utils/platformShadow.ts and GlowHalo.tsx)
+  // PLATFORM · glow + the shadow trap  (see utils/platformShadow.ts; GlowHalo.tsx is already built)
   // ─────────────────────────────────────────────
   //   2. Add `glowShadow(theme.color, glowSize / 2)` to CardFrame's `style`
   //      (make it an array: style={[{ width, ... }, glowShadow(...)]}).
@@ -49,7 +49,8 @@ export function CardView({ card, width, animated = false, tilt }: CardViewProps)
   //      (hint: CardFrame clips its content with overflow: 'hidden'. Read CardFrame.tsx.)
   //   3. Fix it with a wrapper: an outer View that owns the size, radius, shadow and
   //      `backgroundColor: theme.color`. CardFrame goes inside it with style={{ flex: 1 }}.
-  //   4. Render <GlowHalo ... /> as the first child of the outer View.
+  //   4. Render <GlowHalo color={theme.color} size={glowSize} radius={cardRadius}
+  //      pulse={theme.effects.pulse && motion} /> as the first child of the outer View.
   //
   // ─────────────────────────────────────────────
   // MOTION · tilt  (hooks/useTilt.ts is already written)
