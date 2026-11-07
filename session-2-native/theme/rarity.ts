@@ -61,12 +61,6 @@ export const rarityThemes: Record<Rarity, RarityTheme> = {
     frame: ['#f3e3ff', '#cf9bff', '#6a2fc2', '#b46bff', '#f3e3ff'],
     effects: { ...none, pulse: true, shimmer: true },
   },
-  legendary: {
-    label: 'Legendary', color: '#ffc53d', borderWidth: 5, glowRadius: 24, sheen: 0.24, richness: 3, float: 15,
-    entrance: { translateY: 90, scale: 0.4, rotateY: 180, spring: true },
-    frame: ['#fff8d6', '#ffd978', '#b9770e', '#ffc53d', '#fff6c2'],
-    effects: { pulse: true, shimmer: true, holo: true, sparkles: true },
-  },
 };
 
-export const rarityOrder: Rarity[] = ['common', 'uncommon', 'rare', 'epic', 'legendary'];
+export const rarityOrder: Rarity[] = ['common', 'uncommon', 'rare', 'epic'];

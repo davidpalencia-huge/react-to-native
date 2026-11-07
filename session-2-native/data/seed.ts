@@ -12,7 +12,6 @@ export const seedCards: Card[] = [
   { id: 'card-2',  deckId: 'deck-1', name: 'Sprigfawn',  emoji: '🦌', element: 'leaf',   rarity: 'uncommon',  hp: 60,  attackName: 'Bramble Kick',  attackDamage: 20,  flavor: 'Flowers bloom where it sleeps.' },
   { id: 'card-3',  deckId: 'deck-1', name: 'Tidecrab',   emoji: '🦀', element: 'water',  rarity: 'rare',      hp: 80,  attackName: 'Claw Surge',    attackDamage: 40,  flavor: 'Its shell hums with the sea.' },
   { id: 'card-4',  deckId: 'deck-1', name: 'Voltmoth',   emoji: '🦋', element: 'spark',  rarity: 'epic',      hp: 100, attackName: 'Static Storm',  attackDamage: 70,  flavor: 'Every wingbeat charges the air.' },
-  { id: 'card-5',  deckId: 'deck-1', name: 'Drakoflare', emoji: '🐉', element: 'fire',   rarity: 'legendary', hp: 150, attackName: 'Inferno Crown', attackDamage: 120, flavor: 'Rumored to have lit the first star.' },
 
   // ── Ember Legion ─────────────────────────────────────────────
   { id: 'card-6',  deckId: 'deck-2', name: 'Emberfox',   emoji: '🦊', element: 'fire',   rarity: 'common',    hp: 50,  attackName: 'Ember Dash',    attackDamage: 20,  flavor: 'Leaves a trail of warm footprints.' },
@@ -25,5 +24,4 @@ export const seedCards: Card[] = [
   { id: 'card-11', deckId: 'deck-3', name: 'Mindfin',    emoji: '🐬', element: 'mind',   rarity: 'uncommon',  hp: 65,  attackName: 'Echo Pulse',    attackDamage: 25,  flavor: 'Hears thoughts before words.' },
   { id: 'card-12', deckId: 'deck-3', name: 'Duskowl',    emoji: '🦉', element: 'shadow', rarity: 'rare',      hp: 85,  attackName: 'Night Glide',   attackDamage: 45,  flavor: 'Blinks once per eclipse.' },
   { id: 'card-13', deckId: 'deck-3', name: 'Abyssquid',  emoji: '🦑', element: 'shadow', rarity: 'epic',      hp: 105, attackName: 'Ink Eclipse',   attackDamage: 75,  flavor: 'Swallows light for a living.' },
-  { id: 'card-14', deckId: 'deck-3', name: 'Aquarion',   emoji: '🐋', element: 'water',  rarity: 'legendary', hp: 160, attackName: 'Tidal Verdict', attackDamage: 130, flavor: 'The ocean answers to its song.' },
 ];
