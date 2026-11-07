@@ -1,7 +1,8 @@
-# Card Vault · Workshop 2: Styles & CSS in React Native — SOLUTION
+# Card Vault · Workshop 2: Styles & CSS in React Native — LIVE DEMO
 
-Solved version of the Workshop 2 exercise. The exercise branch is `session-2`;
-this branch has every step completed, including the stretch goals.
+Live-coding demo (~10–15 min). This is the finished app **without the Legendary rarity**.
+Add it live, one stage at a time, from `cheat-codes/live-legendary.md`.
+The full app is on `solution/session-02-card-vault`; the exercise is on `session-2`.
 
 ---
 
@@ -34,7 +35,6 @@ Everything is driven by `theme/rarity.ts`. No component checks the rarity name.
 | Uncommon | polished emerald | + glowing discs | 8px, still | fade + slide up | creature breathes |
 | Rare | sapphire metal, thick | + sunburst rays, corner icons | 14px | slides up with a bounce | pulse · float 4px |
 | Epic | amethyst metal | same as Rare | 18px | pops in from half size, bouncy | pulse · shimmer · float 6px |
-| Legendary | gold metal, thickest | double rays | 24px | flips around like a pack reveal | pulse · shimmer · holo foil · sparkles · float 8px |
 
 Common, Uncommon and Rare differ in more than color: each step adds layers to the artwork
 (`richness` in the table), the frame goes from matte to polished metal, and the glass sheen gets stronger.
