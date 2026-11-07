@@ -5,9 +5,10 @@
 **Before the session**
 
 - [ ] Share the toolkit (`session2_workshop_toolkit.html`).
-- [ ] Open the **solution** in Snack on screen, and in Expo Go on your phone. Know which OS your phone is.
+- [ ] Open the **solution** (`solution/session-02-card-vault`) in Snack on screen, and in Expo Go on your phone. Know which OS your phone is.
 - [ ] Open the same Snack with the other platform selected in the preview (iOS ↔ Android), so you can compare side by side.
-- [ ] Share the **exercise** Snack link (`session-2-native/`) in the chat.
+- [ ] Share the **exercise** Snack link (`session-2` branch, `session-2-native/`) in the chat. It starts **without the Legendary rarity**.
+- [ ] Live demo (if any): open `demo/session-02-card-vault` in Snack and keep `cheat-codes/live-legendary.md` at hand. Five stages, ~10–15 min.
 - [ ] Reduce Motion is OFF on your phone.
 
 ---
@@ -57,7 +58,7 @@ For each one: break it on purpose, show both platforms, restore.
 
 **1 · Shadows (`utils/platformShadow.ts`)**
 
-"On the web: `box-shadow: 0 0 24px gold`. Done. In React Native 0.74 there is no `box-shadow`. iOS has four `shadow` props. Android has one: `elevation`, and it ignores radius and opacity."
+"On the web: `box-shadow: 0 0 24px gold`. Done. In React Native there is no `box-shadow` that behaves the same on both platforms. iOS has four `shadow` props. Android has one: `elevation`, and it ignores radius and opacity."
 
 Show the Legendary card with only `shadowColor` and `shadowRadius`. Glow on iOS. Gray smudge on Android.
 
@@ -91,11 +92,13 @@ Show the Legendary card with only `shadowColor` and `shadowRadius`. Glow on iOS.
 
 "Now your part. Open the exercise Snack. Run it on **both** platforms. Open the Rarity Showcase deck. Right now every card is an unstyled column and every rarity looks the same. You will fix that in layers."
 
-"**Base.** Lay out the card with Flexbox. Five empty styles in `CardFace.tsx`. Remember: every View is already a column. If you want a row, ask for it."
+"**Base.** Lay out the card with Flexbox. Two empty styles in `CardFace.tsx`, plus `flex: 1` on two names. Remember: every View is already a column. If you want a row, ask for it."
 
 "**Mid.** Make each rarity look different. Replace two hardcoded values with the theme. That's the one-table idea from the demo."
 
 "**Platform.** Build the glow. `Platform.select` for the shadow, then check iOS. The shadow is gone. Why? Split the View in two. Then build the halo so Android gets a glow too."
+
+"**Legendary.** The exercise starts without the Legendary rarity. After the demo, paste the 'All at once' block from `cheat-codes/live-legendary.md` — about a minute. Motion and Stretch need it."
 
 "**Motion.** Make Rare breathe, Epic shimmer, Legendary follow your finger. `Animated.loop`, `interpolate`, and a `transform` array. Remember: `perspective` goes first."
 
