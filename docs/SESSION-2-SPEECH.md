@@ -92,17 +92,19 @@ Show the Legendary card with only `shadowColor` and `shadowRadius`. Glow on iOS.
 
 "Now your part. Open the exercise Snack. Run it on **both** platforms. Open the Rarity Showcase deck. Right now every card is an unstyled column and every rarity looks the same. You will fix that in layers."
 
+"**You have about 20 minutes. Base, Mid and Platform are required. Motion and Stretch are for whoever finishes early.**"
+
 "**Base.** Lay out the card with Flexbox. Two empty styles in `CardFace.tsx`, plus `flex: 1` on two names. Remember: every View is already a column. If you want a row, ask for it."
 
 "**Mid.** Make each rarity look different. Replace two hardcoded values with the theme. That's the one-table idea from the demo."
 
 "**Platform.** Build the glow. `Platform.select` for the shadow, then check iOS. The shadow is gone. Why? Split the View in two. Then build the halo so Android gets a glow too."
 
-"**Legendary.** The exercise starts without the Legendary rarity. After the demo, paste the 'All at once' block from `cheat-codes/live-legendary.md` — about a minute. Motion and Stretch need it."
+"**Legendary.** The exercise starts without the Legendary rarity. Base, Mid and Platform don't need it. For Motion and Stretch, paste the 'All at once' block from `cheat-codes/live-legendary.md` — about a minute."
 
-"**Motion.** Make Rare breathe, Epic shimmer, Legendary follow your finger. `Animated.loop`, `interpolate`, and a `transform` array. Remember: `perspective` goes first."
+"**Motion (optional).** Make Rare breathe, Epic shimmer, Legendary follow your finger. `Animated.loop`, `interpolate`, and a `transform` array. Remember: `perspective` goes first."
 
-"**Stretch.** Sparkles, and respecting the OS Reduce Motion setting."
+"**Stretch (optional).** Sparkles, and respecting the OS Reduce Motion setting."
 
 "If you're stuck, `cheat-codes/` has the answer for every step. Try first, then peek. Paste your Snack link in the chat if you need a hand. Any questions? Great, let's start with Base."
 
