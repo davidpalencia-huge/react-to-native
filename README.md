@@ -23,6 +23,10 @@ folder name, so you can diff them directly.
 | 1 | `main` → `session-1-native/` | `solution/session-01-native-patterns` |
 | 2 | `session-2` → `session-2-native/` | `solution/session-02-card-vault` |
 
+Workshop 2 also has a live-coding demo branch, `demo/session-02-card-vault`: the finished app
+without the Legendary rarity, plus `cheat-codes/live-legendary.md` to add it step by step.
+The exercise branch (`session-2`) starts without Legendary too.
+
 On the exercise branch, `session-N-native/cheat-codes/` has copy-paste answers for every step.
 
 ## Facilitator material
