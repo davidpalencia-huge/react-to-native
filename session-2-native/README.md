@@ -47,7 +47,7 @@ Decks, cards, forms, grid, navigation and data all work. You only touch the styl
 
 **Legendary is missing.** Rarity Showcase has 4 cards. The demo adds Legendary live; to follow along,
 paste the "All at once" block of `cheat-codes/live-legendary.md` (types, rarity row, seed cards — ~1 min).
-Motion's tilt + foil and Stretch's sparkles only show on Legendary.
+The required steps (Base, Mid, Platform) don't need it. Only Motion's tilt + foil and Stretch's sparkles show on Legendary.
 
 Run the app first. Open the **Rarity Showcase** deck. The cards are an unstyled column,
 and every rarity looks the same. That's your starting point.
@@ -56,9 +56,9 @@ and every rarity looks the same. That's your starting point.
 
 ## The exercise
 
-**Total: ~22–29 min** (without Stretch).
+**Required: Base + Mid + Platform, ~18–20 min.** Motion and Stretch are optional — do them if you have time left.
 
-### Base · 6–8 min
+### Base · 5 min (required)
 **Goal:** lay out the card with Flexbox.
 
 1. Open `components/card/CardFace.tsx` — read the BASE comment block and the three finished styles (`header`, `art`, `metaRow`)
@@ -75,7 +75,7 @@ and every rarity looks the same. That's your starting point.
 
 ---
 
-### Mid · 3–4 min
+### Mid · 2 min (required)
 **Goal:** make each rarity look different.
 
 3. Open `components/card/CardView.tsx` — read the MID comment
@@ -85,7 +85,7 @@ and every rarity looks the same. That's your starting point.
 
 ---
 
-### Platform · 6–8 min
+### Platform · 8–9 min (required)
 **Goal:** add a glow that works on iOS **and** Android.
 
 5. `utils/platformShadow.ts` — implement `glowShadow` with `Platform.select`
@@ -102,7 +102,7 @@ and every rarity looks the same. That's your starting point.
 
 ---
 
-### Motion · 7–9 min
+### Motion · 7–9 min (optional)
 **Goal:** Rare breathes, Epic shimmers, Legendary reacts to your finger.
 
 8. `hooks/usePulse.ts` — loop an opacity value with `Animated.loop`
@@ -114,7 +114,7 @@ and every rarity looks the same. That's your starting point.
 
 ---
 
-### Stretch
+### Stretch (optional)
 10. Build `Sparkles.tsx` — six twinkling diamonds on Legendary cards (add Legendary first with `cheat-codes/live-legendary.md`)
 11. Implement `useReducedMotion` — turn the effects off when the OS asks for less motion
 12. Create a new card in the app and watch the live preview change as you pick a rarity
