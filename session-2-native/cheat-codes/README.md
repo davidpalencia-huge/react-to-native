@@ -9,5 +9,6 @@ Copy-paste answers for every step. Try the step first — then peek.
 | `03-platform.md` | Platform | `utils/platformShadow.ts`, `components/card/CardView.tsx` |
 | `04-motion.md` | Motion | `hooks/usePulse.ts`, `components/card/CardView.tsx` |
 | `05-stretch.md` | Stretch | `components/card/Sparkles.tsx`, `hooks/useReducedMotion.ts` |
+| `live-legendary.md` | Legendary rarity (demo / prep) | `types.ts`, `theme/rarity.ts`, `data/seed.ts` |
 
 Each file shows the snippet to replace and what to put there.

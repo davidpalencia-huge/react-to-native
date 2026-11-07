@@ -21,7 +21,7 @@ Half of today is about what looks different.
 Paste your Snack link in the call chat and someone will jump in.
 
 Stuck, or just want to see the answer? `cheat-codes/` has copy-paste code for
-every step. Open the file for your step (`01-base.md` … `05-stretch.md`).
+every step. Open the file for your step (`01-base.md` … `05-stretch.md`). `live-legendary.md` adds the missing Legendary rarity.
 
 ---
 
@@ -44,6 +44,10 @@ Decks, cards, forms, grid, navigation and data all work. You only touch the styl
 | `hooks/usePulse.ts` | 🔧 Incomplete | **Motion** |
 | `components/card/Sparkles.tsx` | 🔧 Incomplete | **Stretch** |
 | `hooks/useReducedMotion.ts` | 🔧 Incomplete | **Stretch** |
+
+**Legendary is missing.** Rarity Showcase has 4 cards. The demo adds Legendary live; to follow along,
+paste the "All at once" block of `cheat-codes/live-legendary.md` (types, rarity row, seed cards — ~1 min).
+Motion's tilt + foil and Stretch's sparkles only show on Legendary.
 
 Run the app first. Open the **Rarity Showcase** deck. The cards are an unstyled column,
 and every rarity looks the same. That's your starting point.
@@ -106,12 +110,12 @@ and every rarity looks the same. That's your starting point.
 
 `ShimmerSweep.tsx` and `HoloFoil.tsx` are already built — read how they use `translateX` and `interpolate`.
 
-✓ Done when: open the Legendary card and drag — the card tilts and the rainbow foil slides across it.
+✓ Done when: open the Epic card — the glow breathes and a band of light sweeps across. With Legendary added, drag it: the card tilts and the rainbow foil slides across it.
 
 ---
 
 ### Stretch
-10. Build `Sparkles.tsx` — six twinkling diamonds on Legendary cards
+10. Build `Sparkles.tsx` — six twinkling diamonds on Legendary cards (add Legendary first with `cheat-codes/live-legendary.md`)
 11. Implement `useReducedMotion` — turn the effects off when the OS asks for less motion
 12. Create a new card in the app and watch the live preview change as you pick a rarity
 13. Open `theme/rarity.ts` and change the `entrance` of a rarity (try `rotateY: 180` on Rare). Press Prev / Next to replay it
